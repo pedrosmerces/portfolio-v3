@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case: Foresail — Pedro Henrique Mercês</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">PHM</a>
+  <ul class="nav-links">
+    <li><a href="index.html#sobre">Sobre</a></li>
+    <li><a href="index.html#projetos">Projetos</a></li>
+    <li><a href="index.html#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<a href="index.html#projetos" class="case-back">← Projetos</a>
+
+<div class="case-hero">
+  <span class="section-label">Case 01 · AI Security · Enterprise · Em andamento</span>
+  <h1>Foresail</h1>
+  <p class="lead">
+    Como estruturar qualidade para sistemas que não falham de formas
+    previsíveis — e o que isso exigiu redefinir sobre o próprio conceito de bug.
+  </p>
+  <div class="case-meta-bar">
+    <div class="case-meta-item">
+      <div class="case-meta-label">Contexto</div>
+      <div class="case-meta-value">AI Security · Monitoramento de agentes</div>
+    </div>
+    <div class="case-meta-item">
+      <div class="case-meta-label">Papel</div>
+      <div class="case-meta-value">QA Strategy · Processos · Documentação</div>
+    </div>
+    <div class="case-meta-item">
+      <div class="case-meta-label">Stack</div>
+      <div class="case-meta-value">Python · Supabase · Agentes de IA</div>
+    </div>
+    <div class="case-meta-item">
+      <div class="case-meta-label">Status</div>
+      <div class="case-meta-value">Em andamento — 2024–presente</div>
+    </div>
+  </div>
+</div>
+
+<div class="case-content">
+  <nav class="case-toc">
+    <div class="case-toc-label">Nesta página</div>
+    <ul class="case-toc-list">
+      <li><a href="#ctx">Contexto</a></li>
+      <li><a href="#problema">O problema real</a></li>
+      <li><a href="#objetivo">Objetivo</a></li>
+      <li><a href="#decisoes">Decisões tomadas</a></li>
+      <li><a href="#processo">Processo</a></li>
+      <li><a href="#resultado">Resultado</a></li>
+      <li><a href="#aprendizados">Aprendizados</a></li>
+    </ul>
+  </nav>
+
+  <div class="case-body">
+
+    <div class="case-section" id="ctx">
+      <div class="case-section-label">Contexto</div>
+      <p>
+        Foresail é uma stack enterprise de segurança e monitoramento que usa
+        agentes de IA para analisar sistemas em tempo real. Entrei como QA —
+        mas o papel precisou ser reinventado desde o primeiro sprint.
+      </p>
+      <p>
+        Agentes de IA em produção não falham como software tradicional.
+        Não há um input X que sempre gera o output Y. O comportamento é
+        contextual, emergente e dependente de estado. As ferramentas e
+        frameworks de QA existentes simplesmente não foram projetados pra isso.
+      </p>
+    </div>
+
+    <div class="case-section" id="problema">
+      <div class="case-section-label">O problema real</div>
+      <h3>Confiança sem rastreabilidade não é confiança — é esperança.</h3>
+      <p>
+        O time precisava responder: "podemos colocar esse agente em produção?"
+        Mas não havia critério objetivo para essa resposta. Os testes
+        existentes cobriam a infraestrutura — não o comportamento dos agentes.
+      </p>
+      <p>
+        Em ambiente de segurança, isso é inaceitável. Um agente que toma
+        uma decisão errada em contexto de monitoramento não é só um bug —
+        é um risco real para o cliente.
+      </p>
+    </div>
+
+    <div class="case-section" id="objetivo">
+      <div class="case-section-label">Objetivo</div>
+      <p>
+        Criar uma estratégia de qualidade que respondesse a pergunta que
+        importa: <em>"sob quais condições podemos confiar nesse agente?"</em> —
+        com critérios documentados, rastreáveis e que o time de produto
+        conseguisse usar para tomar decisão de release.
+      </p>
+    </div>
+
+    <div class="case-section" id="decisoes">
+      <div class="case-section-label">Decisões tomadas</div>
+      <ul class="case-decision-list">
+        <li class="case-decision-item">
+          <div class="decision-num">01</div>
+          <div class="decision-text">
+            <strong>Criar taxonomia de falha específica para agentes de IA</strong>
+            "Bug" para agente de IA não é erro de compilação. Mapeei categorias:
+            desvio de instrução, alucinação factual, decisão fora de escopo,
+            loop de raciocínio, resposta ambígua em contexto crítico.
+            Cada categoria tem critério de severidade e protocolo de registro distinto.
+          </div>
+        </li>
+        <li class="case-decision-item">
+          <div class="decision-num">02</div>
+          <div class="decision-text">
+            <strong>Priorizar rastreabilidade sobre cobertura total</strong>
+            A tentação é cobrir o máximo de cenários. A decisão certa foi
+            outra: em sistemas de segurança, saber <em>por que</em> o agente
+            decidiu algo vale mais do que ter 100% de cobertura sem raciocínio.
+            Implementei logs estruturados de decisão como parte do pipeline de QA.
+          </div>
+        </li>
+        <li class="case-decision-item">
+          <div class="decision-num">03</div>
+          <div class="decision-text">
+            <strong>Mapear cenários por impacto potencial, não por frequência</strong>
+            Os casos mais raros costumam ser os mais perigosos. Reorientei
+            o esforço de teste: os edge cases com maior impacto de segurança
+            recebem cobertura prioritária, independente de probabilidade de ocorrência.
+          </div>
+        </li>
+        <li class="case-decision-item">
+          <div class="decision-num">04</div>
+          <div class="decision-text">
+            <strong>Criar "behavioral specifications" como artefato de produto</strong>
+            Em vez de casos de teste técnicos, escrevi especificações de
+            comportamento — formato legível por produto e por eng.: cenário,
+            comportamento esperado, critério de falha, nível de criticidade.
+            Isso tornou QA uma função de produto, não só de engenharia.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="case-section" id="processo">
+      <div class="case-section-label">Processo</div>
+      <p>
+        Ciclos ágeis com sessão dedicada de <em>behavioral review</em> a cada
+        sprint: análise de logs de decisão dos agentes, classificação de
+        comportamentos inesperados e atualização das especificações.
+      </p>
+      <p>
+        Tratei cada revisão como retrospectiva de produto — não de código.
+        A pergunta não era "o que quebrou?", era "o que o agente fez que
+        não esperávamos, e isso é aceitável?"
+      </p>
+    </div>
+
+    <div class="case-section" id="resultado">
+      <div class="case-section-label">Resultado</div>
+      <div class="case-result-box">
+        <p>
+          <strong style="color:var(--ink); font-weight:500; display:block; margin-bottom:0.5rem">
+            O time passou de "achamos que funciona" para "sabemos sob quais condições funciona."
+          </strong>
+          Perguntas de auditoria respondidas com dados, não suposições.
+          Behavioral specifications adotadas como artefato padrão entre produto e eng.
+          Vocabulário comum criado para falar sobre confiabilidade de agentes —
+          o que reduziu ruído de comunicação entre tech, produto e cliente.
+        </p>
+      </div>
+    </div>
+
+    <div class="case-section" id="aprendizados">
+      <div class="case-section-label">Aprendizados</div>
+      <div class="case-learning-box">
+        <p>
+          <strong style="color:var(--ink); font-weight:500;">QA para IA exige epistemologia, não só engenharia.</strong>
+          Você formula hipóteses sobre comportamento, cria experimentos
+          e documenta — mesmo quando o resultado é inconclusivo.
+        </p>
+        <p>
+          O maior valor que trouxe não foi encontrar bugs — foi criar
+          a linguagem e o processo para que o time pudesse tomar
+          decisões de release com mais confiança e menos ansiedade.
+        </p>
+        <p>
+          E o aprendizado mais valioso: em sistemas críticos, a qualidade
+          mais importante não é a que você testa — é a que você documenta.
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--line); display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="index.html#projetos" class="btn btn-ghost" style="font-size:0.76rem">&larr; Todos os projetos</a>
+      <a href="case-trenby.html" class="btn btn-ghost" style="font-size:0.76rem">Próximo case: Trenby &rarr;</a>
+    </div>
+
+  </div>
+</div>
+
+<footer style="margin-top:4rem">
+  <p>© 2025 Pedro Henrique Mercês</p>
+  <p style="font-style:italic; font-family:'DM Serif Display',serif; font-size:0.86rem;">Feito com intenção.</p>
+</footer>
+<script src="js/reveal.js"></script>
+</body>
+</html>

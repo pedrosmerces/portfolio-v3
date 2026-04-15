@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case: Automações — Pedro Henrique Mercês</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">PHM</a>
+  <ul class="nav-links">
+    <li><a href="index.html#sobre">Sobre</a></li>
+    <li><a href="index.html#projetos">Projetos</a></li>
+    <li><a href="index.html#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<a href="index.html#projetos" class="case-back">← Projetos</a>
+
+<div class="case-hero">
+  <span class="section-label">Case 03 · Automação · Produtividade · Processos</span>
+  <h1>Automações Internas</h1>
+  <p class="lead">
+    Por que a maioria das automações falha antes do n8n — e como um
+    processo de mapeamento simples mudou a eficiência de times inteiros.
+  </p>
+  <div class="case-meta-bar">
+    <div class="case-meta-item">
+      <div class="case-meta-label">Contexto</div>
+      <div class="case-meta-value">Automação de processos internos</div>
+    </div>
+    <div class="case-meta-item">
+      <div class="case-meta-label">Papel</div>
+      <div class="case-meta-value">Design · Implementação · Manutenção</div>
+    </div>
+    <div class="case-meta-item">
+      <div class="case-meta-label">Stack</div>
+      <div class="case-meta-value">n8n · Python · TypeScript · Supabase · LLMs</div>
+    </div>
+    <div class="case-meta-item">
+      <div class="case-meta-label">Status</div>
+      <div class="case-meta-value">Contínuo</div>
+    </div>
+  </div>
+</div>
+
+<div class="case-content">
+  <nav class="case-toc">
+    <div class="case-toc-label">Nesta página</div>
+    <ul class="case-toc-list">
+      <li><a href="#ctx">Contexto</a></li>
+      <li><a href="#problema">O problema real</a></li>
+      <li><a href="#objetivo">Objetivo</a></li>
+      <li><a href="#decisoes">Decisões tomadas</a></li>
+      <li><a href="#exemplos">Exemplos reais</a></li>
+      <li><a href="#resultado">Resultado</a></li>
+      <li><a href="#aprendizados">Aprendizados</a></li>
+    </ul>
+  </nav>
+
+  <div class="case-body">
+
+    <div class="case-section" id="ctx">
+      <div class="case-section-label">Contexto</div>
+      <p>
+        Em qualquer empresa de tecnologia existe uma classe de trabalho
+        invisível: tarefas manuais e recorrentes que não constam em nenhum
+        roadmap, mas que consomem horas toda semana. Copiar informações
+        entre ferramentas. Gerar relatórios. Triagem de mensagens. Sync
+        manual entre sistemas.
+      </p>
+      <p>
+        Esse é trabalho que as pessoas fazem sem questionar — porque
+        sempre foi feito assim. E é exatamente por isso que ninguém
+        para para calcular o custo real.
+      </p>
+    </div>
+
+    <div class="case-section" id="problema">
+      <div class="case-section-label">O problema real</div>
+      <h3>Automatizar o processo errado é só torná-lo mais rápido — ainda errado.</h3>
+      <p>
+        O erro mais comum em iniciativas de automação: pegar o workflow
+        que dá mais trabalho e tentar automatizar sem questionar se ele
+        deveria existir na forma atual. O resultado é um workflow automatizado
+        que ainda é ruim — com o bônus de ser mais difícil de mudar.
+      </p>
+      <p>
+        Automação prematura também cria débito de manutenção. Um n8n workflow
+        mal projetado pode gerar mais trabalho do que o processo manual que substituiu.
+      </p>
+    </div>
+
+    <div class="case-section" id="objetivo">
+      <div class="case-section-label">Objetivo</div>
+      <p>
+        Identificar os fluxos com maior atrito e menor valor de decisão
+        humana — os candidatos ideais para automação — e implementar
+        soluções observáveis, mantíveis e que liberem tempo real.
+      </p>
+    </div>
+
+    <div class="case-section" id="decisoes">
+      <div class="case-section-label">Decisões tomadas</div>
+      <ul class="case-decision-list">
+        <li class="case-decision-item">
+          <div class="decision-num">01</div>
+          <div class="decision-text">
+            <strong>Mapear antes de qualquer linha de código</strong>
+            Cada candidato a automação passa por três perguntas:
+            esse processo deveria existir? Existe decisão humana genuína aqui?
+            Qual o custo real de manutenção da automação vs. o tempo economizado?
+            Só depois de responder as três a gente abre o n8n.
+          </div>
+        </li>
+        <li class="case-decision-item">
+          <div class="decision-num">02</div>
+          <div class="decision-text">
+            <strong>n8n para orquestração — código para lógica</strong>
+            n8n é excelente para conectar APIs e sequenciar etapas.
+            Mas lógica complexa — transformação de dados, validações,
+            análise — vai para Python ou TypeScript e é chamada pelo n8n.
+            Isso mantém o workflow legível para não-devs e o código testável.
+          </div>
+        </li>
+        <li class="case-decision-item">
+          <div class="decision-num">03</div>
+          <div class="decision-text">
+            <strong>IA onde a variabilidade justifica — regra simples onde não</strong>
+            LLMs entram quando o input é variável demais para uma regra
+            cobrir bem: triagem de mensagens, classificação de prioridade,
+            resumo de documentos. Quando um if-else resolve, uso if-else.
+            Over-engineering com IA é um risco de qualidade, não uma feature.
+          </div>
+        </li>
+        <li class="case-decision-item">
+          <div class="decision-num">04</div>
+          <div class="decision-text">
+            <strong>Observabilidade como parte do design — não como afterthought</strong>
+            Todo workflow crítico tem logs no Supabase: o que processou,
+            quando, com qual resultado. Alertas de falha configurados antes
+            do deploy. Automação sem observabilidade é caixa preta — e
+            caixa preta em produção é um risco que ninguém vê até quebrar.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="case-section" id="exemplos">
+      <div class="case-section-label">Exemplos reais</div>
+      <h3>Triagem e roteamento de mensagens</h3>
+      <p>
+        Webhook recebe mensagens de múltiplos canais. LLM classifica urgência
+        e tipo. n8n roteia para o canal correto e notifica a pessoa responsável.
+        Antes: triagem manual, 20–40min/dia. Depois: automatizado, com log de
+        cada decisão de roteamento para auditoria.
+      </p>
+      <h3 style="margin-top:1.5rem">Relatórios recorrentes</h3>
+      <p>
+        Queries agendadas no Supabase. Python formata e valida os dados.
+        n8n monta e envia no canal e horário corretos. Eliminou o trabalho
+        de "puxar os dados e montar o relatório" — que acontecia toda semana.
+      </p>
+      <h3 style="margin-top:1.5rem">Sync entre ferramentas</h3>
+      <p>
+        n8n conectando Jira, Notion e Slack: criar tarefa em um reflete nos
+        outros sem cópia manual. Fim da inconsistência entre ferramentas
+        causada por sync feito na memória de alguém.
+      </p>
+    </div>
+
+    <div class="case-section" id="resultado">
+      <div class="case-section-label">Resultado</div>
+      <div class="case-result-box">
+        <p>
+          <strong style="color:var(--ink); font-weight:500; display:block; margin-bottom:0.5rem">
+            Eliminação de trabalho manual recorrente sem criar débito de manutenção.
+          </strong>
+          Workflows observáveis: qualquer pessoa do time entende o que roda
+          sem abrir código — o que foi uma mudança cultural além de técnica.
+          IA usada em exatamente os pontos onde agrega valor mensurável.
+          Logs e alertas que transformaram "algo quebrou e ninguém sabe quando"
+          em "o workflow falhou às 14h32 com esse erro específico."
+        </p>
+      </div>
+    </div>
+
+    <div class="case-section" id="aprendizados">
+      <div class="case-section-label">Aprendizados</div>
+      <div class="case-learning-box">
+        <p>
+          <strong style="color:var(--ink); font-weight:500;">
+            A automação mais valiosa é a que você esquece que existe.
+          </strong>
+          Se um workflow precisa de atenção constante, ele transferiu
+          trabalho manual para trabalho de supervisão — não resolveu nada.
+        </p>
+        <p>
+          Documentação de workflow não é opcional para times pequenos —
+          é mais crítica ainda. Quando o criador sai ou muda de projeto,
+          o workflow precisa ser legível por quem ficou.
+        </p>
+        <p>
+          E o princípio que guia tudo: antes de "como automatizar",
+          sempre "esse processo deveria existir desta forma?"
+          A resposta muda o que você constrói — ou se constrói algo.
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--line); display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="index.html#projetos" class="btn btn-ghost" style="font-size:0.76rem">&larr; Todos os projetos</a>
+      <a href="case-foresail.html" class="btn btn-ghost" style="font-size:0.76rem">Ver case Foresail &rarr;</a>
+    </div>
+
+  </div>
+</div>
+
+<footer style="margin-top:4rem">
+  <p>© 2025 Pedro Henrique Mercês</p>
+  <p style="font-style:italic; font-family:'DM Serif Display',serif; font-size:0.86rem;">Feito com intenção.</p>
+</footer>
+<script src="js/reveal.js"></script>
+</body>
+</html>

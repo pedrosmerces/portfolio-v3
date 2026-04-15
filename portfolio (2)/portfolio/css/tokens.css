@@ -1,0 +1,38 @@
+/* ── TOKENS ── */
+:root {
+  /* colors */
+  --bg:        #f5f2ed;
+  --ink:       #1a1714;
+  --ink-2:     #3a342e;
+  --ink-3:     #6b5f55;
+  --ink-4:     #9e9189;
+  --line:      #ddd7d0;
+  --accent:    #c8560a;
+  --accent-2:  #e8823a;
+  --surface:   #edeae4;
+  --surface-2: #e4e0d9;
+
+  /* type */
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-sans:  'DM Sans', system-ui, sans-serif;
+
+  /* spacing */
+  --gap:   clamp(1.5rem, 4vw, 3rem);
+  --gutter: clamp(1.25rem, 6vw, 5rem);
+
+  /* radius */
+  --r: 6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: clamp(15px, 1.05vw, 17px);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
